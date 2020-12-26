@@ -1,0 +1,24 @@
+{
+  "name":"@std/set",
+  "version": "0.0.0",
+  "main": "dist/index.js",
+  "typings": "dist/index.d.ts",
+  "module": "dist/std.esm.js",
+  "license": "MIT",
+  "files": [
+    "dist"
+  ],
+  "repository": {
+    "type": "git",
+    "url":"git+https://github.com/RobinMalfait/std.git",
+    "directory": "packages/set"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "test": "../../scripts/test.sh",
+    "build": "../../scripts/build.sh",
+    "lint": "../../scripts/lint.sh"
+  }
+}
