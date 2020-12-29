@@ -1,4 +1,4 @@
-import { choose, degrees, factorial, gcd, lcm, radians } from '.'
+import { choose, degrees, factorial, gcd, lcm, product, radians, sum } from '.'
 
 describe('gcd', () => {
   it.each([
@@ -118,5 +118,27 @@ describe('factorial', () => {
     [20, 2_432_902_008_176_640_000],
   ])('should calculate the factorial for example %#', (input, output) => {
     expect(factorial(input)).toEqual(output)
+  })
+})
+
+describe('sum', () => {
+  it.each([
+    [[], 0],
+    [[1], 1],
+    [[1, 2], 3],
+    [[1, 2, 3], 6],
+  ])('should calculate the sum for example %#', (input, output) => {
+    expect(sum(input)).toEqual(output)
+  })
+})
+
+describe('product', () => {
+  it.each([
+    [[], 0],
+    [[1], 1],
+    [[1, 2], 2],
+    [[1, 2, 3], 6],
+  ])('should calculate the product for example %#', (input, output) => {
+    expect(product(input)).toEqual(output)
   })
 })
