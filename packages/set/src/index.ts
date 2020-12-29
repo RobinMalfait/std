@@ -182,7 +182,7 @@ export function clear<T>(set: Set<T>): Set<T> {
   return set
 }
 
-export function map<T>(set: Set<T>, cb: (it: T, idx: number) => T) {
+export function map<T>(cb: (it: T, idx: number) => T, set: Set<T>) {
   let copy = new Set<T>()
   if (set.size <= 0) return copy
 
@@ -192,7 +192,7 @@ export function map<T>(set: Set<T>, cb: (it: T, idx: number) => T) {
   return copy
 }
 
-export function filter<T>(set: Set<T>, cb: (it: T, idx: number) => boolean) {
+export function filter<T>(cb: (it: T, idx: number) => boolean, set: Set<T>) {
   let copy = new Set<T>()
   if (set.size <= 0) return copy
 

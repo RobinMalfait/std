@@ -722,7 +722,7 @@ describe('map', () => {
   it('should be possible to map over a empty set (no-op)', () => {
     let a = new Set<number>([])
 
-    let result = map(a, (value, idx) => value * idx)
+    let result = map((value, idx) => value * idx, a)
 
     expect(result).toEqual(new Set([]))
     expect(result).not.toBe(a)
@@ -731,7 +731,7 @@ describe('map', () => {
   it('should be possible to map over a set', () => {
     let a = new Set([1, 2, 3, 4, 5])
 
-    let result = map(a, (value, idx) => value * idx)
+    let result = map((value, idx) => value * idx, a)
 
     expect(result).toEqual(new Set([0, 2, 6, 12, 20]))
     expect(result).not.toBe(a)
@@ -742,7 +742,7 @@ describe('filter', () => {
   it('should be possible to filter over a empty set (no-op)', () => {
     let a = new Set<number>([])
 
-    let result = filter(a, (value, idx) => value % idx === 0)
+    let result = filter((value, idx) => value % idx === 0, a)
 
     expect(result).toEqual(new Set([]))
     expect(result).not.toBe(a)
@@ -751,7 +751,7 @@ describe('filter', () => {
   it('should be possible to filter a set', () => {
     let a = new Set([1, 2, 3, 4, 5])
 
-    let result = filter(a, (value) => value % 2 === 0)
+    let result = filter((value) => value % 2 === 0, a)
 
     expect(result).toEqual(new Set([2, 4]))
     expect(result).not.toBe(a)
