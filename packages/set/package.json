@@ -1,5 +1,5 @@
 {
-  "name":"@std/set",
+  "name": "@std/set",
   "version": "0.0.0",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
@@ -10,15 +10,20 @@
   ],
   "repository": {
     "type": "git",
-    "url":"git+https://github.com/RobinMalfait/std.git",
+    "url": "git+https://github.com/RobinMalfait/std.git",
     "directory": "packages/set"
   },
   "publishConfig": {
     "access": "public"
   },
+  "jest": {
+    "displayName": "set",
+    "transform": {
+      "\\.(t|j)sx?$": "@swc/jest"
+    }
+  },
   "scripts": {
-    "test": "../../scripts/test.sh",
-    "build": "../../scripts/build.sh",
-    "lint": "../../scripts/lint.sh"
+    "test": "jest",
+    "build": "esbuild ./src/index.ts --outdir=dist"
   }
 }

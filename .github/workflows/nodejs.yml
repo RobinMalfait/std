@@ -1,44 +1,34 @@
 name: CI
+
 on: [push]
+env:
+  CI: true
+
 jobs:
   build:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [14, 16, 18]
 
     steps:
-      - name: Begin CI...
-        uses: actions/checkout@v2
-
+      - uses: actions/checkout@v3
       - name: Use Node 15
-        uses: actions/setup-node@v1
+        uses: pnpm/action-setup@v2
         with:
-          node-version: 15.x
+          version: 7
 
-      - name: Use cached node_modules
-        id: cache
-        uses: actions/cache@v1
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
         with:
-          path: node_modules
-          key: nodeModules-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: |
-            nodeModules-
+          node-version: ${{ matrix.node-version }}
+          cache: 'pnpm'
 
       - name: Install dependencies
-        if: steps.cache.outputs.cache-hit != 'true'
-        run: yarn install --frozen-lockfile
-        env:
-          CI: true
-
-      - name: Lint
-        run: yarn lint
-        env:
-          CI: true
+        run: pnpm install
 
       - name: Test
-        run: yarn test
-        env:
-          CI: true
+        run: pnpm run test
 
       - name: Build
-        run: yarn build
-        env:
-          CI: true
+        run: pnpm run build
